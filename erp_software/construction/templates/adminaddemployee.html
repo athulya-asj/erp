@@ -1,0 +1,244 @@
+	<!------------------base page of admin----------------------->
+    {% load static %}
+
+    <!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+    
+      <title>Admin</title>
+    
+      <!-- Bootstrap core CSS -->
+      <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    
+      <!-- Custom styles for this template -->
+      <link href="{% static 'css/simple-sidebar.css' %}" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="{% static 'css/util1.css' %}">
+      <link rel="stylesheet" type="text/css" href="{% static 'css/main1.css' %}">
+      <link rel="stylesheet" type="text/css" href="{% static 'css/util2.css' %}">
+      <link rel="stylesheet" type="text/css" href="{% static 'css/main2.css' %}">
+      <link rel="stylesheet" type="text/css" href="{% static 'css/util3.css' %}">
+      <link rel="stylesheet" type="text/css" href="{% static 'css/main3.css' %}">
+      <link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{% static 'fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{% static 'vendor/animsition/css/animsition.min.css' %}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css' %}">
+    
+    </head>
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+      <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+      
+    
+      <!-- Menu Toggle Script -->
+      <script>
+        $("#menu-toggle").click(function(e) {
+          e.preventDefault();
+          $("#wrapper").toggleClass("toggled");
+        });
+      </script>
+    
+    
+    <body>
+    
+      <div class="d-flex" id="wrapper">
+    
+        <!-- Sidebar -->
+        <div class="bg-light border-right" id="sidebar-wrapper">
+          <div class="sidebar-heading">ADMIN</div>
+          <div class="list-group list-group-flush">
+      
+          
+                       
+                     
+              <a href="../view/publishtimetable1.php" class="list-group-item list-group-item-action bg-light">Publish Timetable</a>
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Contractor
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right" aria-="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'adminaddcontractor' %}">Add Contractor</a>
+                    <a class="dropdown-item" href="../view/adminremlabelledbyovesubjects.php">Remove contractor</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#"></a>
+                  </div> 
+            <a href="{% url 'adminaddemployee' %}" class="list-group-item list-group-item-action bg-light">Add employee</a>
+            <a href="../view/removestudent.php" class="list-group-item list-group-item-action bg-light">Remove employee</a>
+            <a href="..//view/viewstudent.php" class="list-group-item list-group-item-action bg-light">View employee</a>
+            <a href="../view/adminprofile.php" class="list-group-item list-group-item-action bg-light">Assign work</a>
+            
+          </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+    
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+    
+          <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+    
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../index.php">logout</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </nav>
+	<!------------------superuser adds admin----------------------->
+    <div class="container-contact100">
+            <div class="wrap-contact100">
+                <form class="contact100-form validate-form" action="{% url 'admin_submit_employee' %}" method="post" onsubmit="return form()">
+                    {% csrf_token %}
+                    <span class="contact100-form-title">
+                        ADD EMPLOYEES
+                    </span>
+                    <div class="wrap-input100 validate-input" data-validate="Name is required">
+                        <label class="label-input100" for="name">Full name</label>
+                        <input id="name"  required class="input100" type="text" name="name" placeholder="Enter name...">
+                        <span class="focus-input100"></span>
+                    </div>
+                 
+                    <div class="wrap-input100 validate-input" data-validate="Name is required">
+                        <label class="label-input100" for="name">Email</label>
+                        <input id="email"  required class="input100" type="email" name="email" placeholder="Enter name...">
+                        <span class="focus-input100"></span>
+                    </div>
+                    
+                    <div class="wrap-input100 validate-input" data-validate="Name is required">
+                        <label class="label-input100" for="name">Phone</label>
+                        <input id="phone"  required class="input100" type="number" name="phone" placeholder="Enter phone...">
+                        <span class="focus-input100"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Name is required">
+                        <label class="label-input100" for="name">National id</label>
+                        <input id="phone"  required class="input100" type="text" name="nid" placeholder="Enter national id...">
+                        <span class="focus-input100"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Name is required">
+                        <label class="label-input100" for="name">Salary</label>
+                        <input id="phone"  required class="input100" type="number" name="salary" placeholder="Enter phone...">
+                        <span class="focus-input100"></span>
+                    </div>
+                    <div class="wrap-input100">
+                        <div class="label-input100">Grade</div>
+                        <div>
+                            <select class="js-select2" name="grade">
+                                <option>level 1</option> 
+                                <option>level 2</option> 
+                                <option>level 3</option> 
+                                <option>level 4</option> 
+
+                            </select>
+                    <div class="dropDownSelect2"></div>
+                        </div>
+                        <span class="focus-input100"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate = "Name is required">
+                        <label class="label-input100" for="password">password</label>
+                        <input id="password" class="input100" type="password" name="password" required placeholder="Enter password...">
+                        <span class="focus-input100"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate = "Name is required">
+                        <label class="label-input100" for="password">confirm password</label>
+                        <input id="cpassword" class="input100" type="password" name="cpassword" required placeholder="Enter password...">
+                        <span class="focus-input100"></span>
+                    </div>
+    
+    
+    
+    
+                    <div class="container-contact100-form-btn">
+                        <button class="contact100-form-btn" name="submit">
+                            submit
+                        </button>
+                    </div>
+    
+                    <div class="contact100-form-social flex-c-m">
+                        <a href="#" class="contact100-form-social-item flex-c-m bg1 m-r-5">
+                            <i class="fa fa-facebook-f" aria-hidden="true"></i>
+                        </a>
+    
+                        <a href="#" class="contact100-form-social-item flex-c-m bg2 m-r-5">
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                        </a>
+    
+                        <a href="#" class="contact100-form-social-item flex-c-m bg3">
+                            <i class="fa fa-youtube-play" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </form>
+    
+                <div class="contact100-more flex-col-c-m" style="background-image: url({% static 'img/project1.jpg' %});">
+                </div>
+            </div>
+        </div>
+      
+      <!-- Password validation -->
+    
+    <script>
+    
+    function form()
+    {
+      
+    
+      var str = document.getElementById('password').value;
+      var str1 = document.getElementById('cpassword').value;
+      
+      if (str.length < 6) {
+            alert("too_short");
+            return false;
+        } 
+        if (str !=str1) {
+            alert("Passwords do not match.");
+            return false;
+        }
+        return true;
+    
+    }
+    </script>
+      <!-- Footer -->
+      <footer class="py-5 bg-dark">
+        <div class="container">
+          <p class="m-0 text-center text-white">Copyright &copy; constra software solutions 2019</p>
+        </div>
+        <!-- /.container -->
+      </footer>
+    
+    
+    
+    </body>
+    
+    </html>
+    
